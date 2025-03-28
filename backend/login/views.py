@@ -11,7 +11,7 @@ import requests as http_requests
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import GoogleToken
 
-GOOGLE_CLIENT_ID = "your-client-id"
+GOOGLE_CLIENT_ID = "your client id"
 
 
 def verify_google_token(id_token):
@@ -28,7 +28,7 @@ def exchange_code_for_token(auth_code):
     """Exchanges authorization code for access and refresh tokens."""
     data = {
         "client_id": GOOGLE_CLIENT_ID,
-        "client_secret": "your-client-secret",
+        "client_secret": "your client secret ",
         "code": auth_code,
         "grant_type": "authorization_code",
         "redirect_uri": "http://localhost:5173",

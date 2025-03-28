@@ -9,7 +9,7 @@ import googleimg from "../../../src/assets/login-logos-img/google-color.svg";
 import onedriveimg from "../../../src/assets/login-logos-img/OneDrive.svg";
 import dropboximg from "../../../src/assets/login-logos-img/dropbox.svg"
 
-const clientId = "your-client-id";
+const clientId = "your client id";
 
 function LoginPage() {
   const [Gloadingstate, setGLoadingstate] = useState(false);

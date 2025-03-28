@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from collections import defaultdict
 
 # Google API Credentials
-CLIENT_ID = "your-client-id"
-CLIENT_SECRET = "your-client-secret"
+CLIENT_ID = "your client id"
+CLIENT_SECRET = "your client secret"
 GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
 GOOGLE_DRIVE_API_URL = "https://www.googleapis.com/drive/v3/files"
 
