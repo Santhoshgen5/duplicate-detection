@@ -24,4 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("auth/google/callback/", GoogleLoginViewe.as_view(), name="google-login"),
     path("google-api/", include("googlefilesapi.urls")),
+    path("user-api/", include("userapi.urls"))
+   
 ]

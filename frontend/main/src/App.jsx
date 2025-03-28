@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import LoginPage from "./components/loginpages/loginpage"; // Keep a single import
+import LoginPage from "./components/loginpages/LoginPage"; // Keep a single import
 import PageNotFound from "./components/PageNotFound";
-import Dashboard from "./components/Dashboard/Dashboard"
+
+import DuplicateFiles from "./components/Dashboard/DuplicateFiles";
+import OrgDashboard from "./components/Dashboard/OrgDashboard";
 
 
 function App() {
@@ -14,25 +16,25 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route 
+        <Route
           path="*"
-          element={<PageNotFound />} 
+          element={<PageNotFound />}
         />
-        
+
         <Route
           path="/"
           element={<GoogleOAuthProvider clientId={clientId}>
-          <LoginPage />
+            <LoginPage />
           </GoogleOAuthProvider>}
         />
 
         <Route
           path="/dashboard"
-          element={<Dashboard />}
+          element={<OrgDashboard />}
         />
 
         <Route path="/logout" element={<Logout />} />
-        
+
       </Routes>
     </BrowserRouter>
   );

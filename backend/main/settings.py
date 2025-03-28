@@ -53,8 +53,8 @@ INSTALLED_APPS = [
     
 
     #Our Apps
+    'userapi',
     'login',
-    'testapp',
     'googlefilesapi'
    
 ]

@@ -11,7 +11,7 @@ import requests as http_requests
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import GoogleToken
 
-GOOGLE_CLIENT_ID = "933890705867-blj09m00jt39h4gdud6k86v0ve4lbr2s.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID = "your-client-id"
 
 
 def verify_google_token(id_token):
@@ -20,6 +20,7 @@ def verify_google_token(id_token):
     if response.status_code != 200:
         return None
     
+  
     return response.json()
 
 
@@ -27,10 +28,11 @@ def exchange_code_for_token(auth_code):
     """Exchanges authorization code for access and refresh tokens."""
     data = {
         "client_id": GOOGLE_CLIENT_ID,
-        "client_secret": "",
+        "client_secret": "your-client-secret",
         "code": auth_code,
         "grant_type": "authorization_code",
-        "redirect_uri": "http://localhost:5173"
+        "redirect_uri": "http://localhost:5173",
+        "scope": "https://www.googleapis.com/auth/drive"  # ✅ Add Drive scope here
     }
     headers = {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -38,6 +40,7 @@ def exchange_code_for_token(auth_code):
     print("echange response : before")
     response = requests.post("https://oauth2.googleapis.com/token", data=data,  headers=headers)
     if response.status_code == 200:
+        print(response.json())
         return response.json()
     else:
         print(f"Error: {response.status_code} - {response.text}")
@@ -71,9 +74,10 @@ class GoogleLoginViewe(APIView):
             
             return Response({"error": "Invalid ID token"}, status=400)
       
-        
+        print("^^^^^^^^^^^^^^^^^^",google_info)
         email = google_info.get("email")
         name = google_info.get("name")
+        picture = google_info.get("picture")
 
         if not email:
            
@@ -83,7 +87,8 @@ class GoogleLoginViewe(APIView):
         
         user, created = User.objects.get_or_create(
             email=email,
-            defaults={"username": slugify(email), "first_name": name}
+            
+            defaults={"username": slugify(email), "first_name": name, "last_name":picture}
         )
 
         
